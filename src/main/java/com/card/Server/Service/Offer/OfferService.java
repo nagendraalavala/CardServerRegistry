@@ -51,9 +51,9 @@ public class OfferService {
         return response;
     }
 
-    public OfferResponse findOfferByLocation(String location, String cardProvider, String cardType)
+    public OfferResponse findOfferByLocation(String location, String cardProvider, String cardType, int currentMonth)
     {
-        OfferEntity entity = offerRepo.findByoffLocationAndcardProviderAndcardType(location, cardProvider, cardType);
+        OfferEntity entity = offerRepo.findByoffLocationAndcardProviderAndcardTypeAndMonth(location, cardProvider, cardType, currentMonth);
         OfferResponse response = modelMapper.map(entity, OfferResponse.class);
         return response;
 

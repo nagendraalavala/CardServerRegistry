@@ -30,9 +30,9 @@ public class OfferController {
     }
 
     @GetMapping("/location")
-    public OfferResponse getOfferByLocation(@RequestParam String location, @RequestParam String cardProvider, @RequestParam String cardType )
+    public OfferResponse getOfferByLocation(@RequestParam(required = false) String location, @RequestParam(required = false) String cardProvider, @RequestParam(required = false) String cardType,  @RequestParam(required = false) int currentMonth  )
     {
-        return offerService.findOfferByLocation(location, cardProvider, cardType);
+        return offerService.findOfferByLocation(location, cardProvider, cardType, currentMonth);
 
     }
 }

@@ -8,7 +8,8 @@ public class OfferDTO {
     private String cardType;
     private String offDesc;
     private String offLocation;
-    private String offFrom;
-    private String offTo;
+    private int offFrom;
+    private int offTo;
+    private String defaultOffDesc;
 
 }
