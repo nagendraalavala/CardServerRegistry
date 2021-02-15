@@ -1,7 +1,7 @@
-package com.card.Server.Repository.CardOffer;
+package com.card.Server.Repository.Card;
 
 
-import com.card.Server.Entity.CardOffer.CardEntity;
+import com.card.Server.Entity.Card.CardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

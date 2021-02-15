@@ -1,7 +1,7 @@
-package com.card.Server.Controller.CardOffer;
+package com.card.Server.Controller.Card;
 
 
-import com.card.Server.Service.CardOffer.CardService;
+import com.card.Server.Service.Card.CardService;
 import com.card.Server.types.Card.CardDTO;
 import com.card.Server.types.Card.CardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +30,5 @@ public class CardController {
     {
         return cardService.findAllCards();
     }
+
 }

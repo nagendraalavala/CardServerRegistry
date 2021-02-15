@@ -1,8 +1,8 @@
-package com.card.Server.Service.CardOffer;
+package com.card.Server.Service.Card;
 
 
-import com.card.Server.Entity.CardOffer.CardEntity;
-import com.card.Server.Repository.CardOffer.CardRepository;
+import com.card.Server.Entity.Card.CardEntity;
+import com.card.Server.Repository.Card.CardRepository;
 import com.card.Server.types.Card.CardDAO;
 import com.card.Server.types.Card.CardDTO;
 import com.card.Server.types.Card.CardResponse;

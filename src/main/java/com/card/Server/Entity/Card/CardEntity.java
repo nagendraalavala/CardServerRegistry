@@ -1,13 +1,12 @@
-package com.card.Server.Entity.CardOffer;
+package com.card.Server.Entity.Card;
 
+import com.card.Server.Entity.Offer.OfferEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +18,10 @@ public class CardEntity {
     private Long cardId;
     private String cardProvider;
     private String cardType;
+
+    @OneToMany
+    private List<OfferEntity> offerEntity;
+
 
 //    @ManyToOne(cascade = CascadeType.PERSIST)
 //    private UserEntity userEntity;
