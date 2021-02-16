@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/server/user")
+@RequestMapping("/api/v1/host")
 public class UserController {
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -21,15 +21,21 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping("/new")
+    @PostMapping("/user/sign-up")
     public Object createNewUser( @Valid @RequestBody UserDTO userDTO)
     {
         return userService.saveUser(userDTO);
     }
 
-    @GetMapping("/")
-    public List<UserResponse> getAllUers()
+    @GetMapping("/user/")
+    public List<UserResponse> findAllUers()
     {
         return userService.findAllUsers();
+    }
+
+    @GetMapping("/user/{id}")
+    public Object findUserById(@PathVariable Long id)
+    {
+        return userService.findUserById(id);
     }
 }

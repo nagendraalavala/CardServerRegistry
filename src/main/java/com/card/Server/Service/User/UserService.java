@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,18 +43,25 @@ public class UserService {
     {
         UserEntity userInfo = modelMapper.map(userDTO, UserEntity.class);
         logger.info("UserInfo mapped to entity" + userInfo );
-        if(!userInfo.getUserPassword().equals(userInfo.getUserConfirmPassword()))
+        UserEntity checkUserName = userRepo.findByuserName(userInfo.getUserName());
+        if(checkUserName == null)
         {
-            logger.info("Inside if");
-            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password and ConfirmPassword Not Matched");
+            if(!userInfo.getUserPassword().equals(userInfo.getUserConfirmPassword()))
+            {
+                return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password and ConfirmPassword Not Matched");
+            }
+            else {
+                logger.info("Inside else");
+                userInfo.setStatus("Active");
+                userRepo.save(userInfo);
+                logger.info("Userinfo saved in db");
+                userDAO.setMessage("Thanks for creating the account. Please confirm your email address");
+            }
         }
         else {
-            logger.info("Inside else");
-            userInfo.setStatus("Active");
-            userRepo.save(userInfo);
-            logger.info("Userinfo saved in db");
-            userDAO.setMessage("Thanks for creating the account. Please confirm your email address");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username Already Exist. Please try new one");
         }
+
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userDAO);
     }
@@ -64,6 +72,20 @@ public class UserService {
         List<UserResponse> response = userEntitys.stream().map(userEntity ->modelMapper.map(userEntity, UserResponse.class)).collect(Collectors.toList());
         logger.info("Response: " + response);
         return response;
+    }
+
+    public Object findUserById(Long id)
+    {
+        Optional<UserEntity> getUser = userRepo.findById(id);
+        UserEntity entity = getUser.get();
+        if(getUser.isPresent())
+        {
+            UserResponse userResponse = modelMapper.map(entity, UserResponse.class);
+            return ResponseEntity.status(HttpStatus.OK).body(userResponse);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not Found");
+        }
     }
 
 

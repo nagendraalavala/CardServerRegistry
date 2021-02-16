@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/server/offer")
+@RequestMapping("/api/v1/host")
 public class OfferController {
 
     @Autowired
     private OfferService offerService;
 
-    @PostMapping("/new")
+    @PostMapping("/offer/sign-up")
     public Object newOffer(OfferDTO offerDTO)
     {
         return offerService.addOfferToCard(offerDTO);
     }
 
-    @GetMapping("/")
+    @GetMapping("/offer/")
     public List<OfferResponse> getAllCards()
     {
         return offerService.findAllOffers();
     }
 
-    @GetMapping("/location")
-    public OfferResponse getOfferByLocation(@RequestParam(required = false) String location, @RequestParam(required = false) String cardProvider, @RequestParam(required = false) String cardType,  @RequestParam(required = false) int currentMonth  )
+    @GetMapping("/offer/offer")
+    public OfferResponse getOfferByLocation(@RequestParam(required = false) String location, @RequestParam(required = false) String cardProvider, @RequestParam(required = false) String cardType  )
     {
-        return offerService.findOfferByLocation(location, cardProvider, cardType, currentMonth);
+        return offerService.findOfferByLocation(location, cardProvider, cardType);
 
     }
 }

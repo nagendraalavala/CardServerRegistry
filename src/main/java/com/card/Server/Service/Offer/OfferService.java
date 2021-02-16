@@ -51,12 +51,10 @@ public class OfferService {
         return response;
     }
 
-    public OfferResponse findOfferByLocation(String location, String cardProvider, String cardType, int currentMonth)
+    public OfferResponse findOfferByLocation(String location, String cardProvider, String cardType)
     {
-        OfferEntity entity = offerRepo.findByoffLocationAndcardProviderAndcardTypeAndMonth(location, cardProvider, cardType, currentMonth);
+        OfferEntity entity = offerRepo.findByoffLocationAndcardProviderAndcardTypeAndMonth(location, cardProvider, cardType);
         OfferResponse response = modelMapper.map(entity, OfferResponse.class);
         return response;
-
-
     }
 }

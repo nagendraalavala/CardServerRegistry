@@ -29,7 +29,6 @@ public class UserEntity implements Serializable {
     private String lName;
 
     @NotEmpty(message = "Username Cannot be empty")
-    @Column(unique = true)
     private String userName;
 
     @Email

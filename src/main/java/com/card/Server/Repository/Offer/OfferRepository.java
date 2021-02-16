@@ -9,7 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OfferRepository  extends JpaRepository<OfferEntity, Long> {
 
-    @Query("SELECT IIF(:month >= oe.OffFrom and :month <= oe.OffTo or :month is null, oe.offDesc, oe.defaultOffDesc), oe FROM OfferEntity oe WHERE (oe.offLocation = :location or :location is null ) and (oe.cardProvider = :cardProvider or :cardProvider is null)" +
+    @Query("SELECT  oe FROM OfferEntity oe WHERE (oe.offLocation = :location or :location is null ) " +
+            "and (oe.cardProvider = :cardProvider or :cardProvider is null)" +
             " and (oe.cardType = :cardType or :cardType is null) ")
-    OfferEntity findByoffLocationAndcardProviderAndcardTypeAndMonth(@Param("location") String location, @Param("cardProvider") String cardProvider, @Param("cardType") String cardType, @Param("month") int currentMonth);
+    OfferEntity findByoffLocationAndcardProviderAndcardTypeAndMonth(@Param("location") String location, @Param("cardProvider") String cardProvider, @Param("cardType") String cardType);
 }

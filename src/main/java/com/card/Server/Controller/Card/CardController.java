@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/server/card")
+@RequestMapping("/api/v1/host")
 public class CardController {
 
     @Autowired
     private CardService cardService;
 
-    @PostMapping("/newcard")
+    @PostMapping("/card/sign-up")
     public Object newCard(CardDTO cardDTO)
     {
         return cardService.addNewCard(cardDTO);
     }
 
-    @GetMapping("/")
+    @GetMapping("/card/")
     public List<CardResponse> getAllCards()
     {
         return cardService.findAllCards();

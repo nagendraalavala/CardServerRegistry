@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardResponse {
-    private Long cardId;
     private String cardProvider;
     private String cardType;
 
